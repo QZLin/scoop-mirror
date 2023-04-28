@@ -1,7 +1,8 @@
 $simple_replace = @{
-    'https://github\.com'                         = 'https://ghproxy.com/github.com'
-    #'github\.com'                                 = 'hub.fgit.gq'
-    #'raw\.githubusercontent\.com'                 = 'raw.fgit.gq'
+    #'github\.com'                                 = 'hub.fastgit.org'
+    #'raw\.githubusercontent\.com'                 = 'raw.fastgit.org'
+    'https?://github\.com'                        = 'https://ghproxy.com/github.com'
+    'https?://raw\.githubusercontent\.com'        = 'https://ghproxy.com/raw.githubusercontent.com'
     '(?<=//)(?:.*dl|downloads)\.sourceforge\.net' = 'udomain.dl.sourceforge.net'
 }
 function inject_url ($url) {
