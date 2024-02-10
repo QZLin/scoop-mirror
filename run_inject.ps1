@@ -1,12 +1,15 @@
+param([switch]$link = $false)
 $scoop_home = Get-Item $env:USERPROFILE"/scoop/apps/scoop/current"
 Push-Location $scoop_home
 
-if (-not(Test-Path "lib/mirror.ps1")) {
-    # Dev
-    # Write-Output "Create Symblic Link of mirror.ps1"
-    # New-Item -ItemType SymbolicLink -Path "lib/mirror.ps1" -Value (Get-Item $PSScriptRoot/mirror.ps1) 
+if ($link) {
+    if (-not(Test-Path "lib/mirror.ps1")) {
+        New-Item -ItemType SymbolicLink -Path "lib/mirror.ps1" -Value (Get-Item $PSScriptRoot/mirror.ps1) 
+    }
 }
-Copy-Item $PSScriptRoot/mirror.ps1 "lib/mirror.ps1" -Force
+else {
+    Copy-Item $PSScriptRoot/mirror.ps1 "lib/mirror.ps1" -Force
+}
 
 $lib_install_ps1 = Get-Content lib/install.ps1
 $result = $lib_install_ps1 -replace `
